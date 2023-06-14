@@ -60,4 +60,8 @@ pnpm run preview
 yarn preview
 ```
 
+#### For Icons - nuxt-icons is used. visit iconify.designs for icons
+```
+<Icon name="uil:github" color="black" />
+```
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
