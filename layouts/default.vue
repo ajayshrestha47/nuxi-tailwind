@@ -31,17 +31,21 @@
     </TransitionRoot>
 
     <!-- Static sidebar for desktop -->
-    <div class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
-      <div class="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6 pb-4">
+    <div class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:flex-col" :class="[sidebarIcon ? 'lg:w-20' : 'lg:w-72']">
+      <div class="flex grow flex-col gap-y-5 overflow-y-aut border-r border-gray-200 bg-white px-6 pb-4">
         <div class="flex h-16 shrink-0 items-center text-slate-600">
+          <button type="button" class="-m-2.5 p-2.5 text-gray-700 pr-5" @click="sidebarIcon = !sidebarIcon">
+            <span class="sr-only">Open sidebar</span>
+            <Icon name="ri:menu-2-fill" class="h-6 w-6 transition duration-300" :class="[sidebarIcon ? 'rotate-180' : '']"/>
+          </button>
           <Icon name="material-symbols:inventory-rounded" class="h-8 w-auto"/>
-          <span class="pl-2 font-semibold">Inventory +</span>
+          <span class="pl-2 font-semibold" v-if="!sidebarIcon">Inventory +</span>
         </div>
-        <sidebar />
+        <sidebar :show-icon-only="sidebarIcon"/>
       </div>
     </div>
 
-    <div class="lg:pl-72">
+    <div :class="[sidebarIcon ? 'lg:pl-20' : 'lg:pl-72']">
       <div class="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
         <button type="button" class="-m-2.5 p-2.5 text-gray-700 lg:hidden" @click="sidebarOpen = true">
           <span class="sr-only">Open sidebar</span>
@@ -105,4 +109,5 @@ const userNavigation = [
   { name: 'Sign out', href: '#' },
 ]
 const sidebarOpen = ref(false)
+const sidebarIcon = ref(false)
 </script>
